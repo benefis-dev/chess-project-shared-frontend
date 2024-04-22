@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+    nodejs-cli:
+        image: node:16.10.0-alpine
+        container_name: chess-project-shared-frontend-nodejs-cli
+        volumes:
+            - ./:/shared-frontend
+        working_dir: /shared-frontend
+        network_mode: host
