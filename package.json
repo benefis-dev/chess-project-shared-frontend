@@ -2,9 +2,8 @@
     "name": "chess-project-shared-frontend",
     "version": "0.1.0",
     "description": "Shared frontend code of the chess project",
-    "author": "Oleg K. <lgklkv@ya.ru>",
-    "license": "",
-    "private": true,
+    "author": "Oleg K.",
+    "license": "ISC",
     "dependencies": {
         "dayjs": "~1.11.7",
         "lodash.clonedeep": "~4.5.0",
