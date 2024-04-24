@@ -8,7 +8,7 @@ import {toConsole} from "../utils"
  * @param {function} redirect
  * @return {Promise<void>}
  */
-export async function routeGuard({store, route, redirect}) {
+export async function routeGuard(store, route, redirect) {
     toConsole("Выполнился middleware 'routeGuard', окружение: " + process.env.VUE_ENV)
 
     if (route.path.toLowerCase().includes("login")) {
