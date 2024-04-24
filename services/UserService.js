@@ -1,3 +1,5 @@
+// noinspection JSUnusedGlobalSymbols
+
 import {Store} from "vuex"
 import {Voyager} from "./Voyager"
 import {TokenService} from "./TokenService"

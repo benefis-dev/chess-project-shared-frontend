@@ -1,3 +1,5 @@
+// noinspection JSUnusedGlobalSymbols
+
 import {copy, isNumber, isObject, isString} from "../utils"
 
 export class PuzzleFilter {

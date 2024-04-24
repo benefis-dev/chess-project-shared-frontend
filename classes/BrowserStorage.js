@@ -1,3 +1,5 @@
+// noinspection JSUnusedGlobalSymbols
+
 import {isString, isObject, isArray} from "../utils"
 
 export class BrowserStorage {

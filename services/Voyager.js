@@ -1,3 +1,5 @@
+// noinspection JSUnusedGlobalSymbols
+
 import {AuthenticationError} from "../exceptions/AuthenticationError"
 import {NuxtAxiosInstance} from "@nuxtjs/axios"
 import dayjs from "dayjs"

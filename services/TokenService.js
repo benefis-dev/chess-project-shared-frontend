@@ -1,3 +1,5 @@
+// noinspection JSUnusedGlobalSymbols
+
 import {NuxtAxiosInstance} from "@nuxtjs/axios"
 import {AuthTokensNotFound} from "../exceptions/AuthTokensNotFound"
 
