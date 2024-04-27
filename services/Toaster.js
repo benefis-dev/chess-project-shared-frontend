@@ -1,7 +1,7 @@
 // noinspection JSUnusedGlobalSymbols
 
 import {Store} from "vuex"
-import {isUndefined, isNull, isNumber, isString, flatten} from "../utils"
+import {isNull, isNumber, isString, flatten} from "../utils"
 
 export class Toaster {
     /**
@@ -16,16 +16,16 @@ export class Toaster {
 
     /**
      * @param {Store} store
-     * @param {Object} runtimeConfig
+     * @param {Number} messagesDisplayTime
      */
-    constructor(store, runtimeConfig) {
+    constructor(store, messagesDisplayTime) {
         this.#store = store
 
-        if (isUndefined(runtimeConfig?.messagesDisplayTime)) {
-            throw new Error("В конфиге не найдено значение свойства 'messagesDisplayTime'")
+        if (!isNumber(messagesDisplayTime)) {
+            throw new Error("Значение свойства 'messagesDisplayTime' должно быть числом")
         }
 
-        this.#messagesDisplayTime = runtimeConfig.messagesDisplayTime
+        this.#messagesDisplayTime = messagesDisplayTime
     }
 
     /**
