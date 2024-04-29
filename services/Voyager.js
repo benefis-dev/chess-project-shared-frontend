@@ -36,7 +36,7 @@ export class Voyager {
      */
     constructor(axios, store, tokenService, toaster) {
         this.#axios = axios.create({
-            baseURL: process.env.apiUrl,
+            baseURL: process.env.API_URL,
         })
 
         this.#store = store
