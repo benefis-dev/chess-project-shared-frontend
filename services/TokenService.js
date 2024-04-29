@@ -2,21 +2,39 @@
 
 import {NuxtAxiosInstance} from "@nuxtjs/axios"
 import {AuthTokensNotFound} from "../exceptions/AuthTokensNotFound"
+import {isString} from "../utils"
 
 export class TokenService {
+    /**
+     * @type {String}
+     */
+    #tokenStorageServicePath
+
     /**
      * @type {NuxtAxiosInstance}
      */
     #axios
 
     /**
+     * @param {String} baseURL
+     * @param {String} tokenStorageServicePath
      * @param {NuxtAxiosInstance} axios
      */
-    constructor(axios) {
+    constructor(baseURL, tokenStorageServicePath, axios) {
+        if (!isString(baseURL)) {
+            throw new Error("Параметр 'baseURL' должен быть строкой.")
+        }
+
+        if (!isString(tokenStorageServicePath)) {
+            throw new Error("Параметр 'tokenStorageServicePath' должен быть строкой.")
+        }
+
         this.#axios = axios.create({
-            baseURL: process.env.SELF_URL,
+            baseURL,
             withCredentials: true,
         })
+
+        this.#tokenStorageServicePath = tokenStorageServicePath
     }
 
     /**
@@ -24,14 +42,14 @@ export class TokenService {
      * @return {Promise<void>}
      */
     async saveTokens(tokenPair) {
-        await this.#axios.$post(process.env.TOKEN_STORAGE_SERVICE_PATH, tokenPair)
+        await this.#axios.$post(this.#tokenStorageServicePath, tokenPair)
     }
 
     /**
      * @return {Promise<*>}
      */
     async getTokens() {
-        const {isOk, payload, error} = await this.#axios.$get(process.env.TOKEN_STORAGE_SERVICE_PATH)
+        const {isOk, payload, error} = await this.#axios.$get(this.#tokenStorageServicePath)
 
         if (!isOk) {
             throw new AuthTokensNotFound(error ?? "Неизвестная ошибка от сервиса хранения токенов.")
@@ -44,6 +62,6 @@ export class TokenService {
      * @return {Promise<void>}
      */
     async removeTokens() {
-        await this.#axios.$delete(process.env.TOKEN_STORAGE_SERVICE_PATH)
+        await this.#axios.$delete(this.#tokenStorageServicePath)
     }
 }

@@ -6,6 +6,7 @@ import dayjs from "dayjs"
 import {Store} from "vuex"
 import {TokenService} from "./TokenService"
 import {Toaster} from "./Toaster"
+import {isString} from "../utils"
 
 export class Voyager {
     /**
@@ -29,14 +30,19 @@ export class Voyager {
     #toaster
 
     /**
+     * @param {String} baseURL
      * @param {NuxtAxiosInstance} axios
      * @param {Store} store
      * @param {TokenService} tokenService
      * @param {Toaster} toaster
      */
-    constructor(axios, store, tokenService, toaster) {
+    constructor(baseURL, axios, store, tokenService, toaster) {
+        if (!isString(baseURL)) {
+            throw new Error("Параметр 'baseURL' должен быть строкой.")
+        }
+
         this.#axios = axios.create({
-            baseURL: process.env.API_URL,
+            baseURL,
         })
 
         this.#store = store
