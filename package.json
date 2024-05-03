@@ -1,10 +1,11 @@
 {
     "name": "chess-project-shared-frontend",
-    "version": "0.2.4",
+    "version": "0.2.5",
     "description": "Shared frontend code of the chess project",
     "author": "Oleg K.",
     "license": "ISC",
     "dependencies": {
+        "base64-js": "~1.5.1",
         "dayjs": "~1.11.7",
         "lodash.clonedeep": "~4.5.0",
         "uuid": "~9.0.1"

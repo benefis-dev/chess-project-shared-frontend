@@ -2,6 +2,7 @@ import cloneDeep from "lodash.clonedeep"
 import dayjs from "dayjs"
 import {v4} from "uuid"
 import {PuzzleFilter} from "./classes/PuzzleFilter"
+import {toByteArray} from "base64-js"
 
 /**
  * Выполняет глубокое копирование. Принимает только массивы или объекты.
@@ -104,7 +105,7 @@ export function getPayloadFromJWT(jwt) {
         return JSON.parse(Buffer.from(payload, "base64").toString())
     }
 
-    return JSON.parse(window.atob(payload))
+    return JSON.parse(new TextDecoder().decode(toByteArray(payload)))
 }
 
 /**
