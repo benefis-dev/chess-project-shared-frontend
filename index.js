@@ -51,6 +51,7 @@ import {Voyager}             from "./services/Voyager"
 import {CredentialsStore}    from "./store/CredentialsStore"
 import {ToasterStore}        from "./store/ToasterStore"
 import {UserStore}           from "./store/UserStore"
+import {nuxtServerInit}      from "./store/nuxtServerInit"
 
 export {
     copy,
@@ -104,4 +105,5 @@ export {
     CredentialsStore,
     ToasterStore,
     UserStore,
+    nuxtServerInit,
 }
