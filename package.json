@@ -1,6 +1,6 @@
 {
     "name": "chess-project-shared-frontend",
-    "version": "0.2.6",
+    "version": "0.2.7",
     "description": "Shared frontend code of the chess project",
     "author": "Oleg K.",
     "license": "ISC",

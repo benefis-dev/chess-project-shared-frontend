@@ -91,18 +91,25 @@ export function isPropertyExists(propName, object) {
 }
 
 /**
- * @param {String|null} jwt
- * @return {Object|null}
+ * @param {String|null} JWT
+ * @return {Object}
  */
-export function getPayloadFromJWT(jwt) {
-    if (!isString(jwt)) {
-        return null
+export function getPayloadFromJWT(JWT) {
+    if (!isString(JWT)) {
+        throw new Error("JWT должен быть строкой")
     }
 
-    const [, payload ,] = jwt.split(".")
+    let [, payload ,] = JWT.split(".")
 
     if (process.server) {
         return JSON.parse(Buffer.from(payload, "base64").toString())
+    }
+
+    const residue = payload.length % 4
+
+    // Если длина строки не кратна 4
+    if (residue > 0) {
+        payload = payload + "=".repeat(residue)
     }
 
     return JSON.parse(new TextDecoder().decode(toByteArray(payload)))
